@@ -20,7 +20,6 @@ const App = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    let passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,40}$/;
     if (name === "password") {
       const evaluation = zxcvbn(value);
       setErrors(evaluation);
