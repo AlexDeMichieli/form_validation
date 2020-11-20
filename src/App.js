@@ -7,7 +7,7 @@ const initialState = {
   firstname: "",
   lastname: "",
   emailaddress: "",
-  password: ""
+  password: "",
 };
 
 const App = () => {
@@ -32,8 +32,14 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
     if (form.password.length < 6) {
       setPasswordError(true);
+      return false;
+    }
+    if (!mailformat.test(form.emailaddress)) {
+      alert("email not valid");
       return false;
     } else {
       setPasswordError(false);
@@ -44,7 +50,7 @@ const App = () => {
   console.log(errors.score, errors.feedback, passwordError);
   const strengthClass = [
     "strength-meter mt-2",
-    form.password.length > 0 ? "visible" : "invisible"
+    form.password.length > 0 ? "visible" : "invisible",
   ]
     .join(" ")
     .trim();
