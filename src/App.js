@@ -31,17 +31,18 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    let mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (form.password.length < 6) {
       setPasswordError(true);
+      console.log("email less than 6");
       return false;
+    } else if (form.password.length > 6) {
+      setPasswordError(false);
     }
     if (!mailformat.test(form.emailaddress)) {
       alert("email not valid");
       return false;
-    } else {
-      setPasswordError(false);
     }
     clearState();
   };
